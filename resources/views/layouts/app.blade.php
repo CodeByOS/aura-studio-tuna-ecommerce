@@ -231,8 +231,15 @@
             color: var(--text-secondary);
             font-size: 18px;
         }
+
+        .nav-items{
+            display : flex  ; 
+            gap : 40px ; 
+            width : 60% ; 
+        }
         .nav-links {
             display: flex;
+            align-items:center ; 
             gap: 32px;
         }
         .nav-links a {
@@ -326,7 +333,18 @@
 
            
 .sidebar { 
-    padding-right: 40px; 
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+
+
+}
+
+.sidebar-filters{
+    max-height: calc(100vh - 120px); 
+    overflow-y: auto;
+    width: 100% ; 
+        padding-right: 45px;
 }
 
 /* Active Filters Section */
@@ -512,8 +530,7 @@
       
 
 
-        /* products section*/
-        .products-area { }
+
         .sorting-bar {
             display: flex;
             justify-content: space-between;
@@ -522,6 +539,8 @@
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-color);
             font-size: 14px;
+
+            
         }
         .sort-dropdown {
             display: flex;
@@ -769,7 +788,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition));
+    transition: var(--transition);
     cursor: pointer;
     z-index: 5;
 }
@@ -796,22 +815,209 @@
 
 
 
+
         /* ==========================================================================
-          responsive 
-           ========================================================================== */
-        @media (max-width: 1024px) {
-            .nav-links { gap: 20px; }
-            .search-bar { margin: 0 20px; }
-        }
+   Filter drawer — for mobile
+   ========================================================================== */
 
-        @media (max-width: 992px) {
-            .shop-container { grid-template-columns: 1fr; }
-            .products-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 2fr); }
-            .decor-svg { display: none; }
-        }
+/* Overlay backdrop */
+.filter-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 250ms ease;
+    pointer-events: none; 
+}
+.filter-overlay.overlay-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-        @media (max-width: 768px) {
+/* Drawer close button (hidden on desktop) */
+.drawer-header {
+    display: none;
+}
+
+/* Mobile filter toggle button (hidden on desktop) */
+.mobile-filter-btn {
+    display: none;
+}
+
+/* Sorting bar left group */
+.sorting-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Active filter count badge on button */
+.mobile-filter-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-clay);
+    color: var(--surface-color);
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+
+
+
+/* ==========================================================================
+    responsive 
+========================================================================== */
+@media (max-width: 1024px) {
+    .nav-links { gap: 20px; }
+    .search-bar { margin: 0 20px; }
+}
+
+@media (max-width: 992px) {
+
+    /* Grid: products take full width, sidebar is pulled out of flow */
+    .shop-container {
+        grid-template-columns: 1fr;
+        gap: 0;
+        
+    }
+
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: repeat(2, 2fr); }
+    .decor-svg { display: none; }
+
+    /* Hide the form/sidebar wrapper from normal document flow */
+    #filter-form {
+        position: static;
+    }
+
+    /* ---- Sidebar becomes a slide-in drawer ---- */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(340px, 85vw);
+        height: 100dvh;
+        background: var(--bg-color);
+        z-index: 210;
+        overflow-y: auto;
+        padding: 0 24px 40px;
+        transform: translateX(-100%);
+        transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid var(--border-color);
+    }
+
+    .sidebar.drawer-open {
+        transform: translateX(0);
+    }
+
+    /* Overlay visible when drawer is open */
+    .filter-overlay {
+        display: block; /* always in DOM, opacity handles show/hide */
+    }
+
+    /* Drawer header — close button row */
+    .drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0 16px;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 24px;
+        position: sticky;
+        top: 0;
+        background: var(--bg-color);
+        z-index: 1;
+    }
+
+    .drawer-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-main);
+    }
+
+    .drawer-close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-main);
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        border-radius: 4px;
+        transition: var(--transition);
+    }
+    .drawer-close-btn:hover {
+        background: var(--border-color);
+    }
+
+    /* Sidebar inner scroll — remove padding-right, full width */
+    .sidebar-filters {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+        width: 100%;
+    }
+
+    /* Mobile filter toggle button — show it */
+    .mobile-filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        background: var(--surface-color);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--text-main);
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+    }
+    .mobile-filter-btn:hover {
+        border-color: var(--text-main);
+    }
+    .mobile-filter-btn i {
+        font-size: 17px;
+    }
+
+    /* Sorting bar stacks on small width */
+    .sorting-bar {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-top: 16px ; 
+        background-color: var(--bg-color) ; 
+        position: sticky;
+        top: 72px;
+        z-index: 10;
+        width: 100%;
+    }
+
+    .results-count {
+        font-size: 13px;
+        color: var(--text-secondary);
+    }
+
+    /* Products 2-col */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid { grid-template-columns: repeat(2, 2fr); }
+    .decor-svg { display: none; }
+}
+
+
+ @media (max-width: 768px) {
             h1 { font-size: 40px; }
             
             .top-bar .top-bar-container {
@@ -822,14 +1028,14 @@
 
             .menu-toggle { display: block; }
             
-            .nav-links {
+            .nav-items {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: auto;
                 background: var(--surface-color);
-                flex-direction: column;
+           
                 padding: 120px 40px 60px;
                 transform: translateY(-100%);
                 transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.3s ease, visibility 0.3s;
@@ -840,7 +1046,14 @@
                 opacity: 0;
             }
 
-            .nav-links.active {
+             .nav-items , .nav-links{
+                display : flex ; 
+                flex-direction: column;
+                align-items: center;
+
+            }
+
+            .nav-items.active {
                 transform: translateY(0);
                 visibility: visible;
                 opacity: 1;
@@ -851,9 +1064,9 @@
                 font-size: 20px;
             }
 
-            .search-bar {
-                display: none; /* Can be moved inside nav-links or shown on toggle */
-            }
+            /* .search-bar {
+                display: none; 
+            } */
 
             .header-actions { gap: 15px; }
 
@@ -866,11 +1079,18 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .products-grid { grid-template-columns: 1fr; }
+
+@media (max-width: 480px) {
+    .products-grid { grid-template-columns: 1fr; }
             .header-actions a:not(:last-child) { display: none; } /* Hide some actions on very small screens if needed */
             .header-actions i { font-size: 20px; }
-        }
+    /* On very small screens sort label can be hidden */
+    .sort-dropdown label { display: none; }
+
+    .sorting-bar-left {
+        gap: 10px;
+    }
+}
 
 
     </style>
@@ -898,16 +1118,24 @@
                 <span class="aura-text">Aura</span><span class="dot">◼</span>
             </a>
             
-            <nav class="nav-links">
-                <a href="{{ route('shop.catalog') }}" class="{{ request()->routeIs('shop.catalog') ? 'active' : '' }}">Shop</a>
-                <a href="{{ route('about') }}">About</a>
-            </nav>
-            
-            <form method="GET" action="{{ route("shop.catalog") }}" class="search-bar">
+            <nav class="nav-items">
+
+                <div class="nav-links">
+                
+                    <a href="{{ route('shop.catalog') }}" class="{{ request()->routeIs('shop.catalog') ? 'active' : '' }}">Shop</a>
+                    <a href="{{ route('about') }}">About</a>
+                    
+                </div>
+
+                <form method="GET" action="{{ route("shop.catalog") }}" class="search-bar">
                     <i class="iconoir-search"></i>
                     <input name="search" type="text" placeholder="Search catalog...">
-            </form>
+                </form>
 
+
+            </nav>
+            
+       
             <div class="header-actions">
                 @auth
                     <a href="{{ route('profile.edit') }}"><i class="iconoir-user"></i></a>
@@ -998,7 +1226,7 @@
 (function () {
     const CSRF = document.querySelector('meta[name="csrf-token"]')?.content;
     const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.querySelector('.nav-items');
     const body = document.body;
 
     if (menuToggle) {
