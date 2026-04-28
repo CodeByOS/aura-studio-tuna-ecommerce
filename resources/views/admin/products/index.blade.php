@@ -94,7 +94,8 @@
                         @endphp
                         <span class="badge {{ $statusClass }}">{{ $statusLabel }}</span>
                     </td>
-                    <td class="actions-cell">
+                    <td >
+                        <div class="actions-cell">
                         {{-- Edit --}}
                         <button type="submit" class="btn-icon" style="color: var(--text-primary);"  title="Edit"  onclick="editProduct({{ $product }})">
                              <i class="iconoir-edit " title="Edit"></i>
@@ -128,6 +129,8 @@
                                 </button>
                             </form>
                         @endif
+
+                        </div>
                     </td>
                 </tr>
                 @empty
