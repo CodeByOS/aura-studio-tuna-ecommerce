@@ -99,20 +99,22 @@
                             {{ ucfirst($order->status) }}
                         </span>
                     </td>
-                    <td style="display: flex; align-items: center; gap: 8px;">
-                        <button class="btn btn-ghost" style="padding: 5px 14px; font-size: 12px;" onclick="openOrderModal({{ $order->id }})">
-                            View
-                        </button>
-                        {{-- Admin-only delete --}}
-                        @if(auth()->user()->role === 'admin')
-                            <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" onsubmit="return confirm('Permanently delete order #{{ $order->order_number }}? This cannot be undone.')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-icon reject" title="Delete order">
-                                    <i class="iconoir-trash"></i>
-                                </button>
-                            </form>
-                        @endif
+                    <td >
+                        <div class="actions-cell">
+                            <button class="btn btn-ghost" style="padding: 5px 14px; font-size: 12px;" onclick="openOrderModal('{{ $order->order_number }}')">
+                                View
+                            </button>
+                            {{-- Admin-only delete --}}
+                            @if(auth()->user()->role === 'admin')
+                                <form action="{{ route('admin.orders.destroy', $order) }}" method="POST" onsubmit="return confirm('Permanently delete order #{{ $order->order_number }}? This cannot be undone.')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-icon reject" title="Delete order">
+                                        <i class="iconoir-trash"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
                     </td>
                 </tr>
                 @empty
@@ -136,9 +138,10 @@
 
 @push('scripts')
 <script>
-    async function openOrderModal(orderId) {
+    async function openOrderModal(orderNum) {
+        console.log(orderNum)
         try {
-            const response = await fetch(`/admin/orders/${orderId}`, {
+            const response = await fetch(`/admin/orders/${orderNum}`, {
                 headers: { 'Accept': 'application/json' }
             });
             const order = await response.json();

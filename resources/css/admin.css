@@ -548,7 +548,7 @@ input:focus, select:focus, textarea:focus {
 .page-num.active { color: var(--text-primary); font-weight: 400; border-bottom: 1px solid var(--text-primary); }
 
 /* Actions Cell */
-.actions-cell { display: flex; align-items: center; gap: 16px;  height: 110px; }
+.actions-cell { display: flex; align-items: center; gap: 16px;   }
 
 /* Modals */
 .modal-overlay {
@@ -572,7 +572,7 @@ input:focus, select:focus, textarea:focus {
 .modal-content {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-sm);
     width: 100%;
     max-width: 540px;
     max-height: 90vh;

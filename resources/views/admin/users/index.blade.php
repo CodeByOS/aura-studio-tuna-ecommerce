@@ -62,7 +62,7 @@
                         <form action="{{ route('admin.users.role', $user) }}" method="POST" class="role-form">
                             @csrf
                             @method('PATCH')
-                            <select name="role" class="table-select" {{ $user->id === auth()->id() ? 'disabled' : '' }}>
+                            <select name="role" class="input-styled" {{ $user->id === auth()->id() ? 'disabled' : '' }}>
                                 @if($user->role === 'admin')
                                     <option value="admin" selected>Admin</option>
                                 @endif
