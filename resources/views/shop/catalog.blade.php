@@ -14,6 +14,10 @@
     <svg class="decor-svg" xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 64 64"><path fill="#1B1B0D" d="M28.8 14.7c.6.2 1.8.2 2.5 0 .6-.3.1-.5-1.3-.5s-1.9.2-1.2.5M12 25.5c-1.2 1.3-2.8 2.2-3.4 1.8-.6-.3-.8-.3-.4.2.4.4.3 1.4-.3 2.2-.6.7-.8 1.3-.3 1.2.5 0 2.4-1.8 4.3-4 3.7-4.3 3.8-5.3.1-1.4m15.1.9c.2.2 1.5.9 2.9 1.5 2.4 1.1 2.4 1.1.6-.3-1.6-1.3-4.9-2.4-3.5-1.2M10.8 50c-.3 1.7-.1 3 .4 3 .4 0 .8-1.4.8-3 0-1.7-.2-3-.4-3s-.6 1.3-.8 3"/><path fill="#0D0D0D" d="M39.5 12c-1.1.5-3.6.9-5.5 1-3.2.2-3.3.3-1 1 4.7 1.5 7.7 1.1 8.3-1 .3-1.1.4-2 .4-1.9-.1 0-1.1.4-2.2.9m-16.8 8.7c-.3.5 2.8.8 6.9.8s6.6-.3 5.7-.7c-2.4-.9-12.1-1-12.6-.1M28 26c4 2.2 6.6 2.5 7.6.9 1-1.7-1.6-2.9-6.6-2.8h-4.5zm-10.3 9.8c-1.9.2-3.1 1.2-3.7 2.8s-1.6 2.4-2.7 2.2c-1.5-.2-1.8.5-2 4.2 0 2.5.3 5.2.8 6 .8 1.2.9 1.1.7-.5-.6-3.7 3.5-9.7 8.1-12.1 4.4-2.2 3.9-3.2-1.2-2.6M32.5 37c-.3.5.3 1 1.4 1 1.2 0 2.1-.5 2.1-1 0-.6-.6-1-1.4-1s-1.8.4-2.1 1"/><path fill="#1B0D0D" d="M24.7 25.1c.7.7 1.5 1 1.8.7s-.2-.9-1.2-1.2c-1.4-.6-1.5-.5-.6.5"/><path fill="#281B0D" d="M37.5 22c-.3.6.1.7.9.4 1.8-.7 2.1-1.4.7-1.4-.6 0-1.3.4-1.6 1m-10.7 1.7c1.2.2 3.2.2 4.5 0 1.2-.2.2-.4-2.3-.4s-3.5.2-2.2.4M13.1 38.6c0 1.1.3 1.4.6.6.3-.7.2-1.6-.1-1.9-.3-.4-.6.2-.5 1.3"/><g fill="#E4431B" stroke-width="0"><path d="M26 15.9c-5.1 1.1-10.4 3.8-13.1 6.9-2.1 2.4-2.1 2.5-.2.8 5.8-4.8 17.4-5.9 27.4-2.6 3.3 1.1 6.4 1.8 7 1.5 1.7-1.1.9.4-1.6 2.9-1.4 1.4-2.5 3.1-2.5 3.9 0 1.7 5.5 6.7 7.3 6.7 2.1 0 2.8-1.2 1.6-2.7-1.4-1.6-.5-1.7 2.2-.3 1.4.8 2.6.7 4.5-.3l2.5-1.3-4.9-4.6c-5.8-5.5-12.7-9.1-20-10.7-2.9-.6-5.6-1-6-1-.4.1-2.3.4-4.2.8M55 28c0 .5-.7 1-1.6 1-.8 0-1.2-.5-.9-1 .3-.6 1-1 1.6-1 .5 0 .9.4.9 1"/><path d="M18.6 23.5C10.7 26.3 6.1 34.4 10.5 38c1.3 1.1 1.5.7 1.5-2.9 0-3.2.5-4.4 2.4-5.6 2.9-1.9 5-1.5 16.3 3.1 5.2 2.2 9.8 3.4 12.5 3.3 3.6 0 3.9-.2 2-.9-1.3-.6-2.9-2.4-3.7-4.2S40.1 28.2 40 29c0 .9.7 2.6 1.6 3.8 1.6 2.3.4 3.2-1.3.9-1.9-2.4-2.1-4.5-.8-7 1.2-2.3 1.1-2.6-.8-3.1-1.2-.3-2.3-.3-2.6-.1-.2.3.1.5.7.5 2.1 0 1.3 2.9-1.4 4.6-2.4 1.6-2.8 1.6-7-.4-2.4-1.2-5.2-2.2-6-2.2-2.6 0-.9-2.5 2.2-3.1 2.7-.6 2.7-.7.4-.7-1.4-.1-4.2.5-6.4 1.3"/></g><path fill="#1B1B0D" fill-opacity=".74" d="M12.8 16.7c.7.3 1.6.2 1.9-.1.4-.3-.2-.6-1.3-.5-1.1 0-1.4.3-.6.6"/><path fill="#511B1B" d="M11.8 19.7c.7.3 1.6.2 1.9-.1.4-.3-.2-.6-1.3-.5-1.1 0-1.4.3-.6.6"/><path fill="#AE361B" d="M42.3 33.5c0 .8.4 1.2.9.9s.6-1 .3-1.5c-.9-1.3-1.2-1.1-1.2.6"/><path fill="#361B0D" fill-opacity=".99" d="M58 27.4c0 .2.8 1 1.8 1.7 1.5 1.3 1.6 1.2.3-.4S58 26.6 58 27.4"/></svg>
 </section>
 
+{{-- ① Overlay backdrop (mobile only) --}}
+<div class="filter-overlay" id="filterOverlay"></div>
+
+
 <section class="shop-container container">
 
     <form id="filter-form" method="GET" action="{{ route('shop.catalog') }}">
@@ -21,7 +25,7 @@
             <input type="hidden" name="sort" value="{{ request('sort') }}">
         @endif
 
-        <aside class="sidebar">
+        <aside class="sidebar" id="filterDrawer">
 
     {{-- 1. Active Filters --}}
     @php
@@ -136,8 +140,22 @@
 
     <div class="products-area">
         <div class="sorting-bar">
-            <div class="results-count">
-                Showing {{ $products->firstItem() }}–{{ $products->lastItem() }} of {{ $products->total() }} products
+            <div class="sorting-bar-left">
+                {{-- ③ Mobile filter toggle button --}}
+                @php
+                    $totalActiveFilters = count((array) request('category', [])) + count((array) request('origin', [])) + count((array) request('material', []));
+                    if (request('price_min') || request('price_max')) $totalActiveFilters++;
+                @endphp
+                <button type="button" class="mobile-filter-btn" id="filterToggle" aria-label="Open filters">
+                    <i class="iconoir-filter"></i>
+                    Filters
+                    @if($totalActiveFilters > 0)
+                        <span class="mobile-filter-badge">{{ $totalActiveFilters }}</span>
+                    @endif
+                </button>
+                <span class="results-count">
+                    Showing {{ $products->firstItem() }}–{{ $products->lastItem() }} of {{ $products->total() }} products
+                </span>
             </div>
             <div class="sort-dropdown">
                 <label for="sort">Sort by:</label>
@@ -184,6 +202,27 @@
         document.querySelectorAll('.filter-group.collapsed .accordion-icon').forEach(icon => {
             icon.style.transform = 'rotate(-90deg)';
         });
+
+        // Filter drawer (mobile)
+        const drawer   = document.getElementById('filterDrawer');
+        const overlay  = document.getElementById('filterOverlay');
+        const toggle   = document.getElementById('filterToggle');
+        const closeBtn = document.getElementById('filterClose');
+
+        function openDrawer() {
+            drawer.classList.add('drawer-open');
+            overlay.classList.add('overlay-visible');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDrawer() {
+            drawer.classList.remove('drawer-open');
+            overlay.classList.remove('overlay-visible');
+            document.body.style.overflow = '';
+        }
+
+        toggle?.addEventListener('click', openDrawer);
+        closeBtn?.addEventListener('click', closeDrawer);
+        overlay?.addEventListener('click', closeDrawer);
     });
 </script>
 @endpush
