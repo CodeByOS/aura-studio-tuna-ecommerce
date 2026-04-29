@@ -284,7 +284,7 @@
           catalog components
            ========================================================================== */
         .page-header {
-            padding: 100px 0 80px;
+            padding: 100px 15px 80px;
             position: relative;
         }
 
