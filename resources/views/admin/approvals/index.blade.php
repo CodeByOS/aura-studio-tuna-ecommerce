@@ -133,7 +133,7 @@
                 @empty
                 <tr>
                     <td colspan="{{ auth()->user()->role === 'admin' ? 5 : 4 }}" style="text-align: center; padding: 60px; color: var(--text-muted);">
-                        <i class="iconoir-check-circle" style="font-size: 32px; display: block; margin-bottom: 12px; opacity: 0.4;"></i>
+                        <i class="iconoir-check-circle" style="font-size: 32px; display: flex; justify-content: center; align-items: center; margin-bottom: 12px; opacity: 0.4;"></i>
                         No pending approvals.
                     </td>
                 </tr>
