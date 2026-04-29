@@ -474,7 +474,7 @@
                         @endif
 
                     @endauth
-                    <!-- <li><a href="{{ route('profile.edit') }}" class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}"><i class="iconoir-user"></i> Profile info</a></li> -->
+                    <li><a href="{{ route('profile.edit') }}" class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}"><i class="iconoir-user"></i> Profile info</a></li>
                     
 
                     @auth 
