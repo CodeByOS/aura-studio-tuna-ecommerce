@@ -1058,6 +1058,37 @@
     }
 }
 
+.cart-icon-wrapper {
+        position: relative;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    /* .cart-icon-wrapper i {
+        font-size: 28px;
+    } */
+
+    .cart-badge {
+        position: absolute;
+        bottom: -1px;  
+        left: -8px;     
+        background-color: var(--accent-clay);
+        color: white;
+        font-size: 11px;
+        font-weight: bold;
+        min-width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px; 
+        padding: 2px;
+    }
+
+    .cart-badge.hide {
+        display: none  !important; 
+    }
+
 
     </style>
     @stack('styles')
@@ -1105,7 +1136,12 @@
             <div class="header-actions">
                 @auth
                     <a href="{{ route('profile.edit') }}"><i class="iconoir-user"></i></a>
-                    <a href="{{ route('cart.index') }}"><i class="iconoir-shopping-bag"></i></a>
+                    <a href="{{ route('cart.index') }}" class="cart-icon-wrapper">
+                        <i class="iconoir-shopping-bag"></i>
+
+                        <span id="cart-badge-count"  class="cart-badge  {{$cartCount ==0 ? 'hide' :  ''}}">{{$cartCount ?? 0}}</span>
+
+                    </a>
                     <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                         @csrf
                         <button type="submit" style="background:none; border:none; cursor:pointer; padding:0;">
@@ -1122,11 +1158,9 @@
 
     {{-- Alert Container --}}
     @if(session('alert'))
-        <div  ">
             <x-alert :type="session('alert')['type']" 
-                     :message="session('alert')['message']" 
-                     :icon="session('alert')['icon'] ?? null" />
-        </div>
+                :message="session('alert')['message']" 
+                :icon="session('alert')['icon'] ?? null" />
     @endif
 
 </header>
@@ -1228,6 +1262,8 @@
 
         const btn  = form.querySelector('.quick-add-btn');
         const icon = btn?.querySelector('i');
+        const badgeCount = document.getElementById('cart-badge-count') ; 
+
         if (btn) btn.disabled = true;
 
         try {
@@ -1246,6 +1282,19 @@
                 // ✓ visual feedback on the button
                 if (icon) icon.className = 'iconoir-check';
                 if (btn)  btn.style.background = 'var(--accent-sage)';
+
+                const newCount = data.cart_count;
+                if(badgeCount){
+
+                    if(newCount===0){
+
+                        badgeCount.classList.add('hide');
+                        
+                    }else{
+                        badgeCount.textContent = newCount ;
+                        badgeCount.classList.remove('hide');
+                    }
+                }  
 
                 // update nav cart badge(s)
                 document.querySelectorAll('[data-cart-count]').forEach(el => {
