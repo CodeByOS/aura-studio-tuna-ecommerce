@@ -34,7 +34,21 @@
                 @if($addresses->count() > 0)
                 <div class="saved-address">
                     <select name="saved_address_id" id="saved_address" onchange="fillAddressFromSaved(this)">
-                        <option value="">Use a saved address (optional)</option>
+                        <option value="" selected disabled>Use a saved address (optional)</option>
+
+                            <option value="current" 
+                                data-name="{{ auth()->user()->name ?? '' }}"
+                                data-email="{{  auth()->user()->email ?? '' }}"
+                                data-phone="{{ auth()->user()->phone ?? '' }}"
+                                data-line1=""
+                                data-line2=""
+                                data-city=""
+                                data-state=""
+                                data-zip=""
+                                data-country=""
+                            >add current address</option>
+
+                        {{-- saved addrss  --}}
                         @foreach($addresses as $addr)
                             <option value="{{ $addr->id }}" 
                                 data-name="{{ $addr->full_name }}"
@@ -48,7 +62,7 @@
                                 data-country="{{ $addr->country }}"
                             >{{ $addr->address_line_1 }}, {{ $addr->city }}</option>
                         @endforeach
-                        <option value="new">+ Enter a new address</option>
+                        <option value="new" data-url='{{ route("profile.addresses.index") }}'>+ Enter a new address</option>
                     </select>
                 </div>
                 @endif
@@ -245,5 +259,16 @@
     document.addEventListener('DOMContentLoaded', function() {
         toggleCCFields();
     });
+
+
+    document.getElementById('saved_address').addEventListener('change' , function(){
+
+            if(this.value === "new"){
+                const url = this.options[this.selectedIndex].getAttribute('data-url');
+                if(url){
+                    window.location.href = url;
+                }
+            }
+    })
 </script>
 @endpush
