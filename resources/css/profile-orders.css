@@ -193,6 +193,16 @@
     border-color: var(--text-main);
 }
 
+
+.svg-icon {
+         
+            opacity: 1;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+}
+
+
 /* Responsive (Mobile cards) */
 @media (max-width: 900px) {
     .table-header {

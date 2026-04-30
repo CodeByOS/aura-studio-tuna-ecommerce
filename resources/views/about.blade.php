@@ -98,7 +98,7 @@
                 </div>
 
                  <div class="team-card">
-                    <img src="/assets/d.png" alt="Oussama" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; margin-bottom: 24px; border: 1px solid var(--border-color);">
+                    <img src="/assets/oussama.png" alt="Oussama" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; margin-bottom: 24px; border: 1px solid var(--border-color);">
                     <h4>Oussama Saidi</h4>
                     <span class="role">Quality Assurance & Debugging</span>
                     <p>Tested system functionality, identified issues, and ensured stability by fixing bugs and validating features.</p>
