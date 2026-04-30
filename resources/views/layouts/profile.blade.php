@@ -461,7 +461,11 @@
                         @endif
                     </div>
                     <div>
-                        <h3>{{ auth()->user()->name }}</h3>
+                        @php 
+                            $name  = trim(auth()->user()->name ) ; 
+                            $display = Str::substr($name , 0 ,1) . Str::substr($name , -1) ; 
+                        @endphp
+                        <h3>{{ strtoupper($display) }}</h3>
                         <p style="font-size: 0.875rem;">{{ auth()->user()->email }}</p>
                     </div>
                 </div>

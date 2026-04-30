@@ -30,15 +30,22 @@
             @method('PATCH')
 
             <div class="avatar-upload">
-                <div class="avatar-large">
+                <div class="avatar-large" id="avatar-preview">
                     @if(auth()->user()->avatar)
-                        <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
+                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
                     @else
                         <i class="iconoir-user" style="font-size: 32px; opacity: 0.3;"></i>
                     @endif
                 </div>
+                
                 <div>
-                    <button type="button" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.875rem;">Change picture</button>
+                    <button type="button" class="btn btn-ghost" style="padding: 8px 16px; font-size: 0.875rem;" onclick="document.getElementById('avatar-input').click()">Change picture</button>
+
+                    <input type="file" name="avatar"  id="avatar-input" accept='image/*' style="display: none" onChange="previewAvatar(this)">
+                    @error('avatar')
+                        <p style="color: red; font-size: 12px; margin-top: 5px;">{{ $message }}</p>
+                    @enderror
+                    
                 </div>
             </div>
 
@@ -156,3 +163,24 @@
         </form>
     </section>
 @endsection
+
+
+<script>
+
+
+function   previewAvatar(input) {
+    const preview = document.getElementById('avatar-preview');
+    const file = input.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}"  alt="{{ auth()->user()->name }}">`;
+        }
+
+        reader.readAsDataURL(file);
+    }
+}
+
+</script>

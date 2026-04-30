@@ -13,26 +13,28 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
 
     <style>
-        /* ==========================================================================
-          variables 
-           ========================================================================== */
+
+    /* ==========================================================================
+        variables 
+    ========================================================================== */
+
     :root {
-    --bg-color: #F5F4F0;
-    --surface-color: #FFFFFF;
-    --text-main: #1A1A18;
-    --text-secondary: #6B6A66;
-    --border-color: #E8E6E0;
-    --accent-clay: #F04A20;      
-    --accent-sage: #007a15;       
-    --accent-sand: #C4A06A;     
-    --font-primary: 'DM Sans', sans-serif;
-    --transition: all 150ms ease-out;
-    --shadow-subtle: 0 2px 8px rgba(0,0,0,0.06);
-    --container-width: 1248px;
-    --gutter: 24px;
+        --bg-color: #F5F4F0;
+        --surface-color: #FFFFFF;
+        --text-main: #1A1A18;
+        --text-secondary: #6B6A66;
+        --border-color: #E8E6E0;
+        --accent-clay: #F04A20;      
+        --accent-sage: #007a15;       
+        --accent-sand: #C4A06A;     
+        --font-primary: 'DM Sans', sans-serif;
+        --transition: all 150ms ease-out;
+        --shadow-subtle: 0 2px 8px rgba(0,0,0,0.06);
+        --container-width: 1248px;
+        --gutter: 24px;
 
 
-}
+    }
 
 
 
