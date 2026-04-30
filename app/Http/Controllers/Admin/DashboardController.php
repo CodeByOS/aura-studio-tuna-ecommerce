@@ -18,6 +18,7 @@ class DashboardController extends Controller
         $processingOrders = Order::where('status', 'processing')->count();
         $activeProducts = Product::where('is_active', true)->count();
         $totalRevenue = Order::whereNotIn('status', ['cancelled', 'refunded'])->sum('total_amount');
+        $pendingApprovals = Product::where('pending_status', '!=' , "approved")->count() ; 
 
         // Recent orders (latest 5)
         $recentOrders = Order::with('user')
@@ -31,7 +32,8 @@ class DashboardController extends Controller
             'processingOrders',
             'activeProducts',
             'totalRevenue',
-            'recentOrders'
+            'recentOrders',
+            'pendingApprovals'
         ));
     }
 }
