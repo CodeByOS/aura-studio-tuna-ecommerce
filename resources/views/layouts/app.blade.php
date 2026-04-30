@@ -198,6 +198,10 @@
             font-size: 18px;
         }
 
+        .mobile-profile-link {
+            display: none;
+        }
+
         .nav-items{
             display : flex  ; 
             gap : 40px ; 
@@ -674,6 +678,9 @@
             .newsletter-form {
                 max-width: 100%;
             }
+            .mobile-profile-link {
+                display: block;
+            }
         }
         .newsletter-form input {
             flex: 1;
@@ -1121,7 +1128,7 @@
                 
                     <a href="{{ route('shop.catalog') }}" class="{{ request()->routeIs('shop.catalog') ? 'active' : '' }}">Shop</a>
                     <a href="{{ route('about') }}">About</a>
-                    
+                    <a href="{{ route('profile.edit') }}" class="mobile-profile-link">Profile</a>
                 </div>
 
                 <form method="GET" action="{{ route("shop.catalog") }}" class="search-bar">
