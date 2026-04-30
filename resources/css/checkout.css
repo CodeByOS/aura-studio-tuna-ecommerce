@@ -45,7 +45,7 @@
 
 /* Saved Address */
 .saved-address {
-  margin-bottom: 24px;
+  margin: 24px 0;
 }
 
 .saved-address select {
@@ -99,6 +99,7 @@
 
 /* Payment Methods */
 .payment-options {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 12px;
