@@ -4,6 +4,45 @@
 
 A professional, full-featured e-commerce solution built with **Laravel 13**, **Blade**, **Vanilla CSS**, and **Alpine.js**. This platform provides a seamless shopping experience for customers and a robust management system for administrators and employees.
 
+<img width="6004" height="1965" alt="snapmock-mockup (1)" src="https://github.com/user-attachments/assets/1f0e5e0b-d112-47be-a6a2-8162bb8472e5" />
+
+## 🖼️ Screenshots
+
+<details>
+<summary>Click to expand screenshots</summary>
+
+### Homepage
+<img width="2932" height="1816" alt="snapmock-03" src="https://github.com/user-attachments/assets/829efb07-6707-42f5-a33e-e963a7ae0b17" />
+
+
+### Product Catalog
+<img width="2932" height="1816" alt="snapmock-02" src="https://github.com/user-attachments/assets/5f50eec5-4ec3-4205-8611-25b0dfa5e836" />
+
+
+### Product Detail
+<img width="2932" height="1816" alt="snapmock-04" src="https://github.com/user-attachments/assets/64fa611a-e9f8-4641-abdb-06994b26cf35" />
+
+
+### Cart
+<img width="2932" height="1816" alt="snapmock-05" src="https://github.com/user-attachments/assets/efa14e15-1370-4e96-8e13-64e8ba7fb5b6" />
+
+
+### Checkout
+<img width="2932" height="1816" alt="snapmock-mockup" src="https://github.com/user-attachments/assets/601b5ac7-31b3-40f9-85fc-be6c82c17118" />
+
+
+### Customer Dashboard
+<img width="2932" height="1816" alt="snapmock-06" src="https://github.com/user-attachments/assets/8039ce6e-3d71-4a20-9ed1-864546aba1fa" />
+
+
+### Admin Panel
+<img width="2932" height="1816" alt="snapmock-01" src="https://github.com/user-attachments/assets/1bed1afa-e0c4-4eac-90d0-26fe697770b1" />
+
+
+
+</details>
+
+
 ## 🚀 Features
 
 ### 🛍️ Shopping Experience
@@ -112,36 +151,6 @@ composer run dev
 ```
 This runs `php artisan serve` and `npm run dev` together.
 
-## 🖼️ Screenshots
-
-<details>
-<summary>Click to expand screenshots</summary>
-
-### Homepage
-![Homepage](public/screenshots/homepage.png)
-
-### Product Catalog
-![Catalog](public/screenshots/catalog.png)
-
-### Product Detail
-![Product Detail](public/screenshots/product-detail.png)
-
-### Cart
-![Cart](public/screenshots/cart.png)
-
-### Checkout
-![Checkout](public/screenshots/checkout.png)
-
-### Customer Dashboard
-![Dashboard](public/screenshots/customer-dashboard.png)
-
-### Admin Panel
-![Admin Dashboard](public/screenshots/admin-dashboard.png)
-
-### Approval Queue
-![Approval Queue](public/screenshots/approval-queue.png)
-
-</details>
 
 ## 📁 Key Directory Structure
 
