@@ -63,14 +63,15 @@ class CartController extends Controller
         $quantity = (int) $request->input('quantity');
         $this->cartService->updateQuantity($itemId, $quantity);
 
+        /** @var \App\Models\CartItem|null $item */
+        $item = $this->cartService->items()->firstWhere('id', $itemId);
+
         if ($request->expectsJson()) {
             return response()->json([
                 'success'    => true,
                 'cart_count' => $this->cartService->count(),
                 'subtotal'   => $this->cartService->subtotal(),
-                'item_total' => $this->cartService->items()
-                                    ->firstWhere('id', $itemId)
-                                    ?->price_at_time * $quantity,
+                'item_total' => $item ? $item->price_at_time * $quantity : 0,
             ]);
         }
 

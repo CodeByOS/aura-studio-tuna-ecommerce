@@ -65,6 +65,8 @@ class CartService
     protected function mergeCarts(Cart $from, Cart $to): void
     {
         foreach ($from->items as $item) {
+            /** @var \App\Models\CartItem $item */
+            /** @var \App\Models\CartItem|null $existingItem */
             $existingItem = $to->items()->where('product_id', $item->product_id)->first();
 
             if ($existingItem) {
@@ -79,8 +81,6 @@ class CartService
                 ]);
             }
         }
-
-        // Delete the guest cart after merging
         $from->delete();
     }
 
@@ -89,6 +89,7 @@ class CartService
      */
     public function add(Product $product, int $quantity = 1): CartItem
     {
+        /** @var \App\Models\CartItem|null $existingItem */
         $existingItem = $this->getCart()->items()->where('product_id', $product->id)->first();
 
         if ($existingItem) {
@@ -98,11 +99,14 @@ class CartService
             return $existingItem;
         }
 
-        return $this->getCart()->items()->create([
+        /** @var \App\Models\CartItem $newItem */
+        $newItem = $this->getCart()->items()->create([
             'product_id'    => $product->id,
             'quantity'      => $quantity,
             'price_at_time' => $product->price,
         ]);
+        
+        return $newItem;
     }
 
     /**
@@ -142,9 +146,14 @@ class CartService
     /**
      * Get all items in the cart with their related product.
      */
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem>
+     */
     public function items(): Collection
     {
-        return $this->getCart()->items()->with('product')->get();
+        /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\CartItem> $items */
+        $items = $this->getCart()->items()->with('product')->get();
+        return $items;
     }
 
     /**
@@ -152,7 +161,7 @@ class CartService
      */
     public function count(): int
     {
-        return $this->getCart()->items()->count();
+        return $this->getCart()->items()->sum('quantity');
     }
 
     /**
@@ -160,7 +169,8 @@ class CartService
      */
     public function subtotal(): float
     {
-        return $this->getCart()->items->sum(function ($item) {
+        return (float) $this->getCart()->items->sum(function ($item) {
+            /** @var \App\Models\CartItem $item */
             return $item->quantity * $item->price_at_time;
         });
     }

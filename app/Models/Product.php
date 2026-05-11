@@ -11,6 +11,8 @@ use App\Models\CartItem ;
 use App\Models\Category ; 
 use App\Models\Review ; 
 use App\Models\Wishlist ; 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -47,12 +49,16 @@ class Product extends Model
         'original_data' => 'array',
     ];
 
-    public function category() { return $this->belongsTo(Category::class); }
-    public function reviews() { return $this->hasMany(Review::class); }
-    public function cartItems() { return $this->hasMany(CartItem::class); }
-
-    public function wishlistedBy()
-    {
+    public function category(): BelongsTo { 
+        return $this->belongsTo(Category::class); 
+    }
+    public function reviews(): HasMany { 
+        return $this->hasMany(Review::class); 
+    }
+    public function cartItems(): HasMany { 
+        return $this->hasMany(CartItem::class); 
+    }
+    public function wishlistedBy(): HasMany {
         return $this->hasMany(Wishlist::class);
     }
 

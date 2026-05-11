@@ -54,6 +54,7 @@ class OrderController extends Controller
             return response()->json($order);
         }
 
+        // @phpstan-ignore argument.type
         return view('admin.orders.show', compact('order'));
     }
 

@@ -35,7 +35,9 @@ class CheckoutController extends Controller
         $addresses = collect();
 
         if (auth()->check()) {
-            $addresses = auth()->user()->addresses;
+            /** @var \App\Models\User $user */
+            $user = auth()->user();
+            $addresses = $user->addresses()->get();
         }
 
         // Resolve applied coupon from session
@@ -84,15 +86,14 @@ class CheckoutController extends Controller
 
         // Build shipping address string
         $shippingAddress = implode("\n", array_filter([
-            '<b>Name: </b>'.$validated['name'],
-            '<b>Address line 1: </b>'.$validated['address_line_1'],
-            $validated['address_line_2'] ? '<b>Address line 2: </b>'.$validated['address_line_2'] : null,
-            '<b>City: </b>'.$validated['city'] . ', ' . $validated['state'] . ' ' . $validated['postal_code'],
-            '<b>Country: </b>'.$validated['country'],
-            '<b>Phone: </b>' . $validated['phone'],
-            '<b>Email: </b>' . $validated['email'],
+            $validated['name'],
+            $validated['address_line_1'],
+            $validated['address_line_2'],
+            $validated['city'] . ', ' . $validated['state'] . ' ' . $validated['postal_code'],
+            $validated['country'],
+            'Phone: ' . $validated['phone'],
+            'Email: ' . $validated['email'],
         ]));
-
 
         $subtotal = $this->cartService->subtotal();
 
@@ -129,10 +130,14 @@ class CheckoutController extends Controller
 
         // Move cart items to order items
         foreach ($cartItems as $item) {
+            /** @var \App\Models\CartItem $item */
+            /** @var \App\Models\Product $product */
+            $product = $item->product;
+
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item->product_id,
-                'product_name' => $item->product->name,
+                'product_name' => $product->name,
                 'quantity' => $item->quantity,
                 'unit_price' => $item->price_at_time,
                 'total_price' => $item->price_at_time * $item->quantity,

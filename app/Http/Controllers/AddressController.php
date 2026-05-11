@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Address ; 
+use App\Models\Address; 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
 
 class AddressController extends Controller
 {
@@ -16,7 +15,10 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $addresses = auth()->user()->addresses;
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $addresses = $user->addresses()->get();
+        
         return view('profile.addresses.index', compact('addresses'));
     }
 
@@ -38,6 +40,7 @@ class AddressController extends Controller
             'is_default' => 'boolean',
         ]);
 
+        /** @var \App\Models\User $user */
         $user = auth()->user();
 
         // If set as default, unset previous default of same type
@@ -65,8 +68,6 @@ class AddressController extends Controller
 
         return redirect()->route('profile.addresses.index')->with('success', 'Address saved successfully.');
     }
-
-
         
     /**
      * Update the specified address.
@@ -88,6 +89,7 @@ class AddressController extends Controller
             'is_default' => 'boolean',
         ]);
 
+        /** @var \App\Models\User $user */
         $user = auth()->user();
 
         if ($request->boolean('is_default')) {
