@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category ; 
+use App\Models\Category; 
 use Illuminate\Support\Str;
-
 
 class CategoryController extends Controller
 {
-     public function index()
+    public function index()
     {
         $categories = Category::withCount('products')->get();
         return view('admin.categories.index', compact('categories'));
@@ -23,22 +22,11 @@ class CategoryController extends Controller
             'slug' => 'nullable|string|unique:categories,slug',
         ]);
 
-
-
-        Category::create([
+        // FIX: Assigned the creation to the $category variable
+        $category = Category::create([
             'name' => $validated['name'],
-            'slug' => $validated['slug'] ?? Str::slug($validated['name']),
+            'slug' => $validated['slug'] ?? \Illuminate\Support\Str::slug($validated['name']),
         ]);
-
-
-
-        // if ($request->expectsJson()) {
-        //      return response()->json([
-        //         'success' => true, 
-        //         'message' => 'Category created successfully!',
-        //         'type'    => 'success'
-        //     ]);
-        // }
 
         return redirect()->route('admin.categories.index')->with('alert', ['type' => 'success', 'message' => 'Category created.']);
     }
@@ -52,12 +40,8 @@ class CategoryController extends Controller
 
         $category->update([
             'name' => $validated['name'],
-            'slug' => $validated['slug'] ?? Str::slug($validated['name']),
+            'slug' => $validated['slug'] ?? \Illuminate\Support\Str::slug($validated['name']),
         ]);
-
-        // if ($request->expectsJson()) {
-        //     return response()->json(['success' => true, 'category' => $category]);
-        // }
 
         return redirect()->route('admin.categories.index')->with("alert", ['type' => 'success', 'message' => 'Category updated.']);
     }

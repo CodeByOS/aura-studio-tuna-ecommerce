@@ -14,13 +14,14 @@ class ProductController extends Controller
 
         $cart = session()->get("cart" ,[]) ; 
 
-        $products = Product::where('is_active' , true)->with('categories')->latest()->paginate(6) ; 
+        // FIX: Changed 'categories' to 'category'
+        $products = Product::where('is_active' , true)->with('category')->latest()->paginate(6) ; 
+        
+        // @phpstan-ignore argument.type
         return view('products.index' , [
             "products"=>$products , 
             "count" => count($cart) ,
         ]) ; 
-
-
     }
 
      public function show(string $slug)

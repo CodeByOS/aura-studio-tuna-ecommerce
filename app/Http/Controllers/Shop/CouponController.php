@@ -25,13 +25,13 @@ class CouponController extends Controller
         }
 
         // Calculate current cart total
-        // $cart = app(\App\Services\CartService::class)->getCart();
-        $items =app(\App\Services\CartService::class)->items();
-        $cartTotal = $items->sum(fn($item) => $item->price_at_time * $item->quantity);
+        // Calculate current cart total
+        $items = app(\App\Services\CartService::class)->items();
+        $cartTotal = $items->sum(fn(\App\Models\CartItem $item) => $item->price_at_time * $item->quantity);
         if (!$coupon->isValid((float) $cartTotal)) {
             $message = 'This coupon is not valid';
             if ($coupon->min_order_amount && $cartTotal < $coupon->min_order_amount) {
-                $message .= ' — minimum order amount is $' . number_format($coupon->min_order_amount, 2);
+                $message .= ' — minimum order amount is $' . number_format((float) $coupon->min_order_amount, 2);
             } elseif ($coupon->expires_at && $coupon->expires_at->isPast()) {
                 $message .= ' — this coupon has expired';
             } elseif (!$coupon->is_active) {
