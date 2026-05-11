@@ -1,0 +1,92 @@
+# .zap/auth.yaml — ZAP Automation Framework plan
+
+env:
+  contexts:
+    - name: "AuraStudio"
+      urls:
+        - "http://host.docker.internal:8000"   # reaches your host from inside Docker
+      includePaths:
+        - "http://host.docker.internal:8000/.*"
+      excludePaths:
+        - "http://host.docker.internal:8000/logout"   # don't log out mid-scan!
+        - ".*\\.css"
+        - ".*\\.js"
+        - ".*\\.png"
+        - ".*\\.jpg"
+        - ".*\\.ico"
+      authentication:
+        method: "script"
+        parameters:
+          script: "/zap/scripts/auth.js"
+          scriptEngine: "Oracle Nashorn"
+          loginUrl: "http://host.docker.internal:8000/login"
+          csrfUrl:  "http://host.docker.internal:8000/login"
+        verification:
+          method: "response"
+          loggedInRegex:  "\\Qdashboard\\E|\\Qlogout\\E"
+          loggedOutRegex: "\\Qlogin\\E|\\QSign in\\E"
+      sessionManagement:
+        method: "cookie"
+      users:
+        - name: "admin"
+          credentials:
+            username: "saidi.oussama@gmail.com"
+            password: "oussama"
+        - name: "employee"
+          credentials:
+            username: "employee@gmail.com"
+            password: "employeeadmin"
+
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+
+jobs:
+  # 1. Spider — discover all URLs by crawling links
+  - type: spider
+    parameters:
+      context: "AuraStudio"
+      user: "admin"
+      maxDuration: 5          # minutes
+      maxDepth: 10
+      acceptCookies: true
+
+  # 2. Ajax Spider — discover JS-rendered routes (Alpine.js)
+  - type: spiderAjax
+    parameters:
+      context: "AuraStudio"
+      user: "admin"
+      maxDuration: 3
+      browser: "firefox-headless"
+
+  # 3. Active Scan as Admin (full privileges)
+  - type: activeScan
+    parameters:
+      context: "AuraStudio"
+      user: "admin"
+      scanPolicyName: "Default Policy"
+      maxScanDurationInMins: 30
+
+  # 4. Active Scan as Employee (different role, different attack surface)
+  - type: activeScan
+    parameters:
+      context: "AuraStudio"
+      user: "employee"
+      scanPolicyName: "Default Policy"
+      maxScanDurationInMins: 20
+
+  # 5. Generate reports
+  - type: report
+    parameters:
+      template: "traditional-html"
+      reportDir: "/zap/reports"
+      reportFile: "zap-report-full"
+      reportTitle: "Aura Studio — Full Authenticated Scan"
+      reportDescription: "OWASP ZAP full scan with admin and employee roles"
+
+  - type: report
+    parameters:
+      template: "traditional-json"
+      reportDir: "/zap/reports"
+      reportFile: "zap-report-full"
