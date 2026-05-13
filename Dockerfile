@@ -22,15 +22,14 @@ RUN a2enmod rewrite
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first for better caching
-COPY composer.json composer.lock* ./
+# Copy composer files
+COPY composer.json ./
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install PHP dependencies with retry logic
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress || \
-    (composer clear-cache && composer install --no-dev --optimize-autoloader --no-interaction --no-progress)
+# Install PHP dependencies (resolve fresh for this PHP version)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
 
 # Copy application files
 COPY . .
