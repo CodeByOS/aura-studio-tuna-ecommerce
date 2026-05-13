@@ -1,8 +1,9 @@
 # Use official PHP image with Apache
 FROM php:8.3-apache
 
-# Install system dependencies and PHP extensions in one step
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Install system dependencies and PHP extensions
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     git \
     curl \
     zip \
@@ -11,17 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     libonig-dev \
     libxml2-dev \
-    && docker-php-ext-install \
-        pdo \
-        pdo_pgsql \
-        pgsql \
-        mbstring \
-        xml \
-        curl \
-        tokenizer \
-        bcmath \
-        ctype \
-    && apt-get remove -y libpq-dev libonig-dev libxml2-dev \
+    && docker-php-ext-install pdo pdo_pgsql mbstring xml tokenizer bcmath ctype \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
