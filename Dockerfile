@@ -1,3 +1,11 @@
+# Build frontend assets with Node
+FROM node:20-bookworm-slim AS assets
+WORKDIR /var/www/html
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
 # Use official PHP image with Apache
 FROM php:8.3-apache
 
@@ -33,6 +41,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progre
 
 # Copy application files
 COPY . .
+
+# Copy compiled frontend assets for @vite
+COPY --from=assets /var/www/html/public/build ./public/build
 
 # Run Laravel package discovery after the application code is available
 RUN php artisan package:discover --ansi
