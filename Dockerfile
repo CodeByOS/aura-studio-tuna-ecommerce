@@ -12,7 +12,7 @@ RUN apt-get update \
     libpq-dev \
     libonig-dev \
     libxml2-dev \
-    && docker-php-ext-install pdo pdo_pgsql mbstring xml tokenizer bcmath ctype \
+    && docker-php-ext-install pdo pdo_pgsql mbstring xml ctype bcmath \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
