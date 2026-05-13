@@ -1,8 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -11,11 +10,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
+        DB::statement(
+            "alter table \"addresses\" alter column \"type\" type varchar(255) using \"type\"::text"
+        );
 
-            $table->enum('type' , ['billing'  , "shipping" , "both"])->default('both')->change() ; 
-            
-        });
+        DB::statement(
+            "alter table \"addresses\" alter column \"type\" set default 'both'"
+        );
+
+        DB::statement(
+            "alter table \"addresses\" drop constraint if exists \"addresses_type_check\""
+        );
+
+        DB::statement(
+            "alter table \"addresses\" add constraint \"addresses_type_check\" check (\"type\" in ('billing', 'shipping', 'both'))"
+        );
     }
 
     /**
@@ -23,8 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
-            //
-        });
+        // Reverting this Postgres-specific migration is intentionally left as a no-op.
     }
 };
