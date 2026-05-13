@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "dev:docker": "sh -c 'npm install && npm run dev -- --host 0.0.0.0'"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
