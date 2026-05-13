@@ -1,27 +1,16 @@
 # Use official PHP image with Apache
 FROM php:8.3-apache
 
-# Update package lists
-RUN apt-get update
-
-# Install system dependencies (runtime + build tools)
-RUN apt-get install -y --no-install-recommends \
+# Install system dependencies and PHP extensions in one step
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     zip \
     unzip \
     postgresql-client \
-    ca-certificates \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install build dependencies and compile PHP extensions
-RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     libonig-dev \
     libxml2-dev \
-    libcurl4-openssl-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install \
         pdo \
         pdo_pgsql \
@@ -32,8 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         tokenizer \
         bcmath \
         ctype \
-        openssl \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false libpq-dev libonig-dev libxml2-dev libcurl4-openssl-dev \
+    && apt-get remove -y libpq-dev libonig-dev libxml2-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
