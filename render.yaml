@@ -5,9 +5,10 @@ services:
     dockerfilePath: ./Dockerfile
     region: oregon
     plan: standard
-    healthCheckPath: /
-    
-    # Environment variables (set these in Render dashboard or here)
+    healthCheckPath: /health
+
+    # One Render service serves both the Laravel backend and the Blade frontend.
+    # Set DB_URL in the Render dashboard to your Neon connection string.
     envVars:
       - key: APP_NAME
         value: "AURA E-Commerce"
@@ -21,38 +22,12 @@ services:
         value: error
       - key: DB_CONNECTION
         value: pgsql
-      - key: DB_HOST
-        fromService:
-          type: postgres
-          property: host
-      - key: DB_PORT
-        fromService:
-          type: postgres
-          property: port
-      - key: DB_DATABASE
-        fromService:
-          type: postgres
-          property: database
-      - key: DB_USERNAME
-        fromService:
-          type: postgres
-          property: username
-      - key: DB_PASSWORD
-        fromService:
-          type: postgres
-          property: password
       - key: CACHE_STORE
         value: database
       - key: QUEUE_CONNECTION
         value: database
       - key: SESSION_DRIVER
         value: database
-    
-    # Build command
-    buildCommand: composer install --no-dev --optimize-autoloader && php artisan migrate --force
-    
-    # Start command (Apache runs via CMD in Dockerfile)
-    startCommand: ""
-    
+
     # Auto-deploy on push
     autoDeploy: true

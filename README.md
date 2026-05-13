@@ -133,6 +133,16 @@ For a containerized environment, the project includes a `docker-compose.yml`. Th
 
 The `app` service runs `composer install`, generates the app key, links storage, and seeds the database automatically on startup.
 
+## 🚀 Render Deployment
+
+This project is deployed on Render as a single Docker web service. That one service runs both the Laravel backend and the Blade frontend.
+
+1. Create a Render Web Service and choose `Docker` as the runtime.
+2. Point Render to [render.yaml](render.yaml) or the repo root with [Dockerfile](Dockerfile).
+3. Set `DB_URL` in the Render dashboard to your Neon PostgreSQL connection string.
+4. Deploy the service and let Render build the Docker image.
+5. Visit the app URL and confirm `https://your-service.onrender.com/health` returns `{"status":"ok"}`.
+
 ## 🔐 Default Test Credentials
 
 After seeding, use these accounts to test the roles and approval workflow:

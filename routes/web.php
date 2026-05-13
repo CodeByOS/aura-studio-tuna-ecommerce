@@ -30,6 +30,7 @@ use App\Http\Controllers\ReviewController;
 | Public Routes
 |--------------------------------------------------------------------------
 */
+Route::get('/health', fn () => response()->json(['status' => 'ok']));
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [CatalogController::class, 'index'])->name('shop.catalog');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('shop.product');
